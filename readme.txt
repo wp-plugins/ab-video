@@ -15,7 +15,7 @@ Allows the user to embed Youtube or Vimeo movie clips by entering a shortcode ([
 
 == Installation ==
 
-1. Unzip `ab_video.zip` and upload the contained files to the `/wp-content/plugins/` directory
+1. Unzip `ab-video.zip` and upload the contained files to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Usage ==
