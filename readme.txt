@@ -1,5 +1,5 @@
-=== Youtube - Vimeo - Video ===
-Contributors: andreasb73
+=== AB-Video ===
+Contributors: AndreasBa73
 Tags: video, embed, movie, shortcode, plugin, clip, vimeo, youtube
 Requires at least: 2.5
 Tested up to: 3.0

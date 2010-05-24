@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: AB Video
+Plugin Name: AB-Video
 Plugin URI: http://www.bachmaier.cc/
 Description: Allows the user to embed Youtube / Vimeo movie clips by entering a shortcode ([youtube] / [vimeo]) into the post area.
 Author: Andreas Bachmaier
