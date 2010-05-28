@@ -3,9 +3,9 @@ Contributors: AndreasBa73
 Tags: video, embed, movie, shortcode, plugin, clip, vimeo, youtube
 Requires at least: 2.5
 Tested up to: 3.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
-Allows the user to embed Youtube or Vimeo movie clips by entering a shortcode ([youtbue] or [vimeo]) into the post area. 
+Allows the user to embed Youtube or Vimeo movie clips by entering a shortcode ([youtube] or [vimeo]) into the post area. 
 
 Video options are supported as short code attributes.
 
@@ -19,6 +19,10 @@ Allows the user to embed Youtube or Vimeo movie clips by entering a shortcode ([
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.0.2 =
+* Released: 2010-05-28
+* Description corrected
 
 = 1.0.1 =
 * Released: 2010-05-25
