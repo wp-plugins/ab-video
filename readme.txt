@@ -12,7 +12,7 @@ Video options are supported as short code attributes.
 
 == Description ==
 
-Allows the user to embed Youtube or Vimeo movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion]) into the post area.
+Allows the user to embed Youtube, Vimeo or Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion]) into the post area.
 
 
 == Installation ==
