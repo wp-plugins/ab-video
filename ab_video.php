@@ -2,9 +2,9 @@
 /*
 Plugin Name: AB-Video
 Plugin URI: http://www.bachmaier.cc/2010/05/wordpress-plugin-ab-video/
-Description: Allows the user to embed Youtube / Vimeo movie clips by entering a shortcode ([youtube] / [vimeo]) into the post area.
+Description: Allows the user to embed Youtube / Vimeo / Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion]) into the post area.
 Author: Andreas Bachmaier
-Version: 1.0.2
+Version: 1.1.0
 Author URI: http://www.bachmaier.cc/
 License: GPL 2.0, @see http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -46,6 +46,23 @@ class ab_video {
 			<param name="allowscriptaccess" value="always" />
 			</object></p>';
 	}
+	
+	function dailymotion($atts, $content=null) {
+		extract(shortcode_atts(array(
+			'clip_id' 	=> '',
+			'width' 	=> '512',
+			'height' 	=> '288',
+		), $atts));
+		
+		if (empty($clip_id)) return '<!-- AB Video: Invalid clip_id -->';
+		if ($height && !$width) $width = intval($height * 16 / 9);
+		if (!$height && $width) $height = intval($width * 9 / 16);
+		
+		return '<p><object width="'.$width.'" height="'.$height.'"><param name="movie" value="http://www.dailymotion.com/swf/video/'.$clip_id.'"></param>
+			<param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param>
+			<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/'.$clip_id.'" width="'.$width.'" height="'.$height.'" allowfullscreen="true" allowscriptaccess="always"></embed>
+			</object></p>';
+	}
 
 }
 
@@ -53,21 +70,27 @@ class ab_video {
 		echo '<div class="wrap">
 					<h2>AB-Video</h2>
 					<h3>Description</h3>
-					<p>Allows the user to embed Youtube or Vimeo movie clips by entering a shortcode ([youtube] or [vimeo]) into the post area.</p>
+					<p>Allows the user to embed Youtube, Vimeo or Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion]) into the post area.</p>
 					<br />
 					<h3>Usage</h3>
 					<p>
 					Vimeo:<br />
-					1. Enter the `[vimeo clip_id="XXXXXXX"]` short code into any post. `clip_id` is the number from the clip\'s URL (e.g. http://vimeo.com/123456)<br />
-					2. Optionally modify the clip\'s appearance by specifying width or height, like so: `[vimeo clip_id="XXXXXXX" width="400" height="225"]`<br />
-					3. Using empty values for either the `width` or `height`attributes will cause AB-Video to calculate the proper dimension based on a 16:9 aspect ration.<br />
-					   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: `[vimeo clip_id="12345678" height="300" width=""]` or `[vimeo clip_id="12345678" height="" width="640"]`<br />
+					1. Enter the [vimeo clip_id="XXXXXXX"] short code into any post. clip_id is the number from the clip\'s URL (e.g. http://vimeo.com/123456)<br />
+					2. Optionally modify the clip\'s appearance by specifying width or height, like so: [vimeo clip_id="XXXXXXX" width="400" height="225"]<br />
+					3. Using empty values for either the width or height attributes will cause AB-Video to calculate the proper dimension based on a 16:9 aspect ration.<br />
+					   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: [vimeo clip_id="12345678" height="300" width=""] or [vimeo clip_id="12345678" height="" width="640"]<br />
 					<br />
 					Youtube:<br />
-					1. Enter the `[youtube clip_id="XXXXXXX"]` short code into any post. `clip_id` is the id from the clip\'s URL after v= (e.g. http://www.youtube.com/watch?v=2LbpLRZwWtE)<br />
-					2. Optionally modify the clip\'s appearance by specifying width or height, like so: `[youtube clip_id="XXXXXXX" width="400" height="225"]`<br />
-					3. Using empty values for either the `width` or `height`attributes will cause AB-Video to calculate the proper dimension based on a 16:9 aspect ration.<br /> 
-					   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: `[youtube clip_id="2LbpLRZwWtE" height="300" width=""]` or `[youtube clip_id="2LbpLRZwWtE" height="" width="640"]`<br />
+					1. Enter the [youtube clip_id="XXXXXXX"] short code into any post. clip_id is the id from the clip\'s URL after v= (e.g. http://www.youtube.com/watch?v=2LbpLRZwWtE)<br />
+					2. Optionally modify the clip\'s appearance by specifying width or height, like so: [youtube clip_id="XXXXXXX" width="400" height="225"]<br />
+					3. Using empty values for either the width or height attributes will cause AB-Video to calculate the proper dimension based on a 16:9 aspect ration.<br /> 
+					   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: [youtube clip_id="2LbpLRZwWtE" height="300" width=""] or [youtube clip_id="2LbpLRZwWtE" height="" width="640"]<br />
+					<br />
+					Dailymotion:<br />
+					1. Enter the [dailymotion clip_id="xdjrm7"] short code into any post. clip_id is the id from the clip\'s URL (e.g. http://www.dailymotion.com/video/xdjrm7_kylie-minogue-all-the-lovers_music#hp-v-v4)<br />
+					2. Optionally modify the clip\'s appearance by specifying width or height, like so: [dailymotion clip_id="XXXXXXX" width="400" height="225"]<br />
+					3. Using empty values for either the width or height attributes will cause AB-Video to calculate the proper dimension based on a 16:9 aspect ration.<br /> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: [dailymotion clip_id="xdjrm7" height="300" width=""] or [dailymotion clip_id="xdjrm7" height="" width="640"]`<br />
 					</p>
 					<br />
 					<h3>Donate</h3>
@@ -93,6 +116,7 @@ class ab_video {
 
 add_shortcode('youtube', array('ab_video', 'youtube'));
 add_shortcode('vimeo', array('ab_video', 'vimeo'));
+add_shortcode('dailymotion', array('ab_video', 'dailymotion'));
 
 // Registrieren der WordPress-Hooks
 add_action('admin_menu', 'ab_video_description_add_menu');
