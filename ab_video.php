@@ -4,12 +4,12 @@ Plugin Name: AB-Video
 Plugin URI: http://www.bachmaier.cc/2010/05/wordpress-plugin-ab-video/
 Description: Allows the user to embed Youtube / Vimeo / Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion]) into the post area.
 Author: Andreas Bachmaier
-Version: 1.1.0
+Version: 1.1.1
 Author URI: http://www.bachmaier.cc/
 License: GPL 2.0, @see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-class ab_video {
+class ab_video {
     function vimeo($atts, $content=null) {
 		extract(shortcode_atts(array(
 			'clip_id' 	=> '',
@@ -22,10 +22,10 @@ class ab_video {
 		if (!$height && $width) $height = intval($width * 9 / 16);
 
 		return "<p><object width='$width' height='$height'><param name='allowfullscreen' value='true' />".
-    			"<param name='allowscriptaccess' value='always' />".
+    			"<param name='allowscriptaccess' value='always' /><param name='wmode' value='transparent'></param>".
     			"<param name='movie' value='http://vimeo.com/moogaloop.swf?clip_id=$clip_id&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1' />".
-    			"<embed src='http://vimeo.com/moogaloop.swf?clip_id=$clip_id&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1' type='application/x-shockwave-flash' allowfullscreen='true' allowscriptaccess='always' width='$width' height='$height'></embed></object>".
-    			"</p>";
+    			"<embed wmode='transparent' src='http://vimeo.com/moogaloop.swf?clip_id=$clip_id&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1' type='application/x-shockwave-flash' allowfullscreen='true' allowscriptaccess='always' width='$width' height='$height'></embed></object>".
+    			"</p>";
     }
 	
 	function youtube($atts, $content=null) {
@@ -44,6 +44,7 @@ class ab_video {
 			<param name="movie" value="http://www.youtube.com/v/'.$clip_id.'&fs=1&fmt=18"></param>
 			<param name="allowFullScreen" value="true" />
 			<param name="allowscriptaccess" value="always" />
+			<param name="wmode" value="transparent"></param>
 			</object></p>';
 	}
 	
@@ -58,12 +59,15 @@ class ab_video {
 		if ($height && !$width) $width = intval($height * 16 / 9);
 		if (!$height && $width) $height = intval($width * 9 / 16);
 		
-		return '<p><object width="'.$width.'" height="'.$height.'"><param name="movie" value="http://www.dailymotion.com/swf/video/'.$clip_id.'"></param>
-			<param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param>
-			<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/'.$clip_id.'" width="'.$width.'" height="'.$height.'" allowfullscreen="true" allowscriptaccess="always"></embed>
+		return '<p><object width="'.$width.'" height="'.$height.'">
+			<param name="movie" value="http://www.dailymotion.com/swf/video/'.$clip_id.'"></param>
+			<param name="allowFullScreen" value="true"></param>
+			<param name="allowScriptAccess" value="always"></param>
+			<param name="wmode" value="transparent"></param>
+			<embed wmode="transparent" type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/'.$clip_id.'" width="'.$width.'" height="'.$height.'" allowfullscreen="true" allowscriptaccess="always"></embed>
 			</object></p>';
 	}
-
+
 }
 
 	function ab_video_description_option_page() {
@@ -113,7 +117,7 @@ class ab_video {
 	function ab_video_description_add_menu() {
 		add_options_page('AB-Video Plugin', 'AB-Video', 9, __FILE__, 'ab_video_description_option_page'); //optionenseite hinzufügen
 	}
-
+
 add_shortcode('youtube', array('ab_video', 'youtube'));
 add_shortcode('vimeo', array('ab_video', 'vimeo'));
 add_shortcode('dailymotion', array('ab_video', 'dailymotion'));
