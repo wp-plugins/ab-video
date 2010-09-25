@@ -4,7 +4,7 @@ Plugin Name: AB-Video
 Plugin URI: http://www.bachmaier.cc/2010/05/wordpress-plugin-ab-video/
 Description: Allows the user to embed Youtube / Vimeo / Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion]) into the post area.
 Author: Andreas Bachmaier
-Version: 1.1.1
+Version: 1.2.0
 Author URI: http://www.bachmaier.cc/
 License: GPL 2.0, @see http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -20,12 +20,8 @@ class ab_video {
 		if (empty($clip_id) || !is_numeric($clip_id)) return '<!-- AB Video: Invalid clip_id -->';
 		if ($height && !$width) $width = intval($height * 16 / 9);
 		if (!$height && $width) $height = intval($width * 9 / 16);
-
-		return "<p><object width='$width' height='$height'><param name='allowfullscreen' value='true' />".
-    			"<param name='allowscriptaccess' value='always' /><param name='wmode' value='transparent'></param>".
-    			"<param name='movie' value='http://vimeo.com/moogaloop.swf?clip_id=$clip_id&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1' />".
-    			"<embed wmode='transparent' src='http://vimeo.com/moogaloop.swf?clip_id=$clip_id&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1' type='application/x-shockwave-flash' allowfullscreen='true' allowscriptaccess='always' width='$width' height='$height'></embed></object>".
-    			"</p>";
+		
+		return "<p><iframe src='http://player.vimeo.com/video/$clip_id?portrait=0' width='$width' height='$height' frameborder='0'></iframe></p>";
     }
 	
 	function youtube($atts, $content=null) {
