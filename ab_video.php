@@ -4,7 +4,7 @@ Plugin Name: AB-Video
 Plugin URI: http://www.bachmaier.cc/2010/05/wordpress-plugin-ab-video/
 Description: Allows the user to embed Youtube / Vimeo / Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion]) into the post area.
 Author: Andreas Bachmaier
-Version: 1.2.0
+Version: 1.2.1
 Author URI: http://www.bachmaier.cc/
 License: GPL 2.0, @see http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -55,13 +55,10 @@ class ab_video {
 		if ($height && !$width) $width = intval($height * 16 / 9);
 		if (!$height && $width) $height = intval($width * 9 / 16);
 		
-		return '<p><object width="'.$width.'" height="'.$height.'">
-			<param name="movie" value="http://www.dailymotion.com/swf/video/'.$clip_id.'"></param>
-			<param name="allowFullScreen" value="true"></param>
-			<param name="allowScriptAccess" value="always"></param>
-			<param name="wmode" value="transparent"></param>
-			<embed wmode="transparent" type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/'.$clip_id.'" width="'.$width.'" height="'.$height.'" allowfullscreen="true" allowscriptaccess="always"></embed>
-			</object></p>';
+			
+		return '<p><iframe frameborder="0" width="'.$width.'" height="'.$height.'" 
+				src="http://www.dailymotion.com/embed/video/'.$clip_id.'?width='.$width.'&theme=none&foreground=%23F7FFFD&highlight=%23FFC300&background=%23171D1B&start=&animatedTitle=&iframe=1&additionalInfos=0&autoPlay=0&hideInfos=0">
+				</iframe></p>';
 	}
 
 }

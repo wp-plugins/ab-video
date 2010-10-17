@@ -3,7 +3,7 @@ Contributors: AndreasBa73
 Tags: video, embed, movie, shortcode, plugin, clip, vimeo, youtube, dailymotion
 Requires at least: 2.5
 Tested up to: 3.0.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 
 Allows the user to embed Youtube, Vimeo or Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion) into the post area. 
 
@@ -22,6 +22,10 @@ Allows the user to embed Youtube Vimeo or Dailymotion movie clips by entering a 
 
 
 == Changelog ==
+
+= 1.2.1 =
+* Released: 2010-10-17
+* Changed: Watch Dailymotion on your iPhone / iPad / iPod touch
 
 = 1.2.0 =
 * Released: 2010-09-25
