@@ -2,10 +2,10 @@
 Contributors: AndreasBa73
 Tags: video, embed, movie, shortcode, plugin, clip, vimeo, youtube, dailymotion
 Requires at least: 2.5
-Tested up to: 3.0.1
-Stable tag: 1.2.1
+Tested up to: 3.0.3
+Stable tag: 1.2.2
 
-Allows the user to embed Youtube, Vimeo or Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion) into the post area. 
+Allows the user to embed Youtube, Vimeo or Dailymotion movie clips by entering a shortcode ([youtube] / [vimeo] / [dailymotion]) into the post area. 
 
 Video options are supported as short code attributes.
 
@@ -22,6 +22,10 @@ Allows the user to embed Youtube Vimeo or Dailymotion movie clips by entering a 
 
 
 == Changelog ==
+
+= 1.2.2 =
+* Released: 2010-1028
+* Changed: Dailymotion theme changed to default
 
 = 1.2.1 =
 * Released: 2010-10-17
